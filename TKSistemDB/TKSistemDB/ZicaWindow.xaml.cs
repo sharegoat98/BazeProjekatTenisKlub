@@ -213,6 +213,7 @@ namespace TKSistemDB
                             }
                         }
 
+                        db.SaveChanges();
 
                         //resetuj listu za prikaz
                         Zice.Clear();
