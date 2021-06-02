@@ -1,0 +1,60 @@
+﻿<Window x:Class="TKSistemDB.KlubWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TKSistemDB"
+        mc:Ignorable="d"
+        Title="KlubWindow" Height="600" Width="600">
+    <Grid>
+        <Label Content="CRUD - KLUB" FontSize="23" HorizontalAlignment="Left" Margin="217,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="DataGridKlubovi" Background="LightGreen" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="244" Margin="36,56,0,0" VerticalAlignment="Top" Width="515">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn x:Name="idKl" Header="ID kluba" Binding="{Binding IdKl}"  Width="100" />
+                <DataGridTextColumn x:Name="nazKl" Header="Naziv kluba" Binding="{Binding NazKl}"  Width="100" />
+                <DataGridTextColumn x:Name="adrKl" Header="Adresa kluba" Binding="{Binding AdrKl}"  Width="100" />
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button x:Name="UpdateButton" Width="130" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Click="UpdateButton_Click">Update</Button>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button x:Name="DeleteButton" Width="130" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Click="DeleteButton_Click">Delete</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+
+
+        </DataGrid>
+        <Label Content="Dodaj klub:" FontSize="20" HorizontalAlignment="Left" Margin="237,325,0,0" VerticalAlignment="Top"/>
+        <Label Content="Naziv kluba:" FontSize="15" HorizontalAlignment="Left" Margin="105,387,0,0" VerticalAlignment="Top"/>
+        <Label Content="Adresa kluba:" FontSize="15" HorizontalAlignment="Left" Margin="371,387,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbNazivKluba" HorizontalAlignment="Left" Height="23" Margin="89,422,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbAdresaKluba" HorizontalAlignment="Left" Height="23" Margin="361,422,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="errNazivKluba" Content="Morate uneti naziv kluba" Foreground="Red" FontSize="10" Visibility="Hidden" HorizontalAlignment="Left" Margin="89,438,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="errAdresaKluba" Content="Morate uneti adresu kluba!" FontSize="10" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="358,438,0,0" VerticalAlignment="Top" Width="126"/>
+        <Button x:Name="btnDodaj" Content="Dodaj" Click="btnDodaj_Click" HorizontalAlignment="Left" Margin="248,509,0,0" VerticalAlignment="Top" Width="82" Height="24"/>
+        <Label x:Name="errNazivPostoji" Content="Klub sa unetim nazivom vec postoji!" FontSize="10" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="63,438,0,0" VerticalAlignment="Top" Width="169"/>
+
+    </Grid>
+</Window>

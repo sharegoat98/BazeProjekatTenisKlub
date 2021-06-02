@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TKSistemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="TKSistemModelStoreContainer">
+    <EntitySet Name="FabrikaReketas" EntityType="TKSistemModel.Store.FabrikaReketas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rekets" EntityType="TKSistemModel.Store.Rekets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Zice" EntityType="TKSistemModel.Store.Zice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Igraci" EntityType="TKSistemModel.Store.Igraci" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Klubovi" EntityType="TKSistemModel.Store.Klubovi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Treners" EntityType="TKSistemModel.Store.Treners" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ima_ugovors" EntityType="TKSistemModel.Store.ima_ugovors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Turnirs" EntityType="TKSistemModel.Store.Turnirs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Igraci_Profesionalac" EntityType="TKSistemModel.Store.Igraci_Profesionalac" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Igraci_Rekreativac" EntityType="TKSistemModel.Store.Igraci_Rekreativac" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FabrikaReketaReket" Association="TKSistemModel.Store.FabrikaReketaReket">
+      <End Role="FabrikaReketa" EntitySet="FabrikaReketas" />
+      <End Role="Reket" EntitySet="Rekets" />
+    </AssociationSet>
+    <AssociationSet Name="ZicaReket" Association="TKSistemModel.Store.ZicaReket">
+      <End Role="Zica" EntitySet="Zice" />
+      <End Role="Reket" EntitySet="Rekets" />
+    </AssociationSet>
+    <AssociationSet Name="ZicaIgrac" Association="TKSistemModel.Store.ZicaIgrac">
+      <End Role="Zica" EntitySet="Zice" />
+      <End Role="Igrac" EntitySet="Igraci" />
+    </AssociationSet>
+    <AssociationSet Name="ProfesionalacKlub" Association="TKSistemModel.Store.ProfesionalacKlub">
+      <End Role="Profesionalac" EntitySet="Igraci_Profesionalac" />
+      <End Role="Klub" EntitySet="Klubovi" />
+    </AssociationSet>
+    <AssociationSet Name="TrenerKlub" Association="TKSistemModel.Store.TrenerKlub">
+      <End Role="Trener" EntitySet="Treners" />
+      <End Role="Klub" EntitySet="Klubovi" />
+    </AssociationSet>
+    <AssociationSet Name="FabrikaReketaima_ugovor" Association="TKSistemModel.Store.FabrikaReketaima_ugovor">
+      <End Role="FabrikaReketa" EntitySet="FabrikaReketas" />
+      <End Role="ima_ugovor" EntitySet="ima_ugovors" />
+    </AssociationSet>
+    <AssociationSet Name="ima_ugovorKlub" Association="TKSistemModel.Store.ima_ugovorKlub">
+      <End Role="ima_ugovor" EntitySet="ima_ugovors" />
+      <End Role="Klub" EntitySet="Klubovi" />
+    </AssociationSet>
+    <AssociationSet Name="ima_ugovorTurnir" Association="TKSistemModel.Store.ima_ugovorTurnir">
+      <End Role="ima_ugovor" EntitySet="ima_ugovors" />
+      <End Role="Turnir" EntitySet="Turnirs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profesionalac_inherits_Igrac" Association="TKSistemModel.Store.FK_Profesionalac_inherits_Igrac">
+      <End Role="Igrac" EntitySet="Igraci" />
+      <End Role="Profesionalac" EntitySet="Igraci_Profesionalac" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rekreativac_inherits_Igrac" Association="TKSistemModel.Store.FK_Rekreativac_inherits_Igrac">
+      <End Role="Igrac" EntitySet="Igraci" />
+      <End Role="Rekreativac" EntitySet="Igraci_Rekreativac" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FabrikaReketas">
+    <Key>
+      <PropertyRef Name="IdFab" />
+    </Key>
+    <Property Name="IdFab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdrFab" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NazFab" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rekets">
+    <Key>
+      <PropertyRef Name="SifRek" />
+    </Key>
+    <Property Name="SifRek" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MarRek" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BojaRek" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ModRek" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FabrikaReketaIdFab" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zice">
+    <Key>
+      <PropertyRef Name="SifZic" />
+    </Key>
+    <Property Name="SifZic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BojaZic" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MatZic" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ReketSifRek" Type="int" Nullable="true" />
+    <Property Name="IgracIdIgr" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Igraci">
+    <Key>
+      <PropertyRef Name="IdIgr" />
+    </Key>
+    <Property Name="IdIgr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImeIgr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PrzIgr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TipIgr" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Klubovi">
+    <Key>
+      <PropertyRef Name="IdKl" />
+    </Key>
+    <Property Name="IdKl" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NazKl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AdrKl" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Treners">
+    <Key>
+      <PropertyRef Name="IdTr" />
+    </Key>
+    <Property Name="IdTr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KlubIdKl" Type="int" Nullable="true" />
+    <Property Name="ImeTr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PrzTr" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ima_ugovors">
+    <Key>
+      <PropertyRef Name="FabrikaReketaIdFab" />
+      <PropertyRef Name="KlubIdKl" />
+    </Key>
+    <Property Name="FabrikaReketaIdFab" Type="int" Nullable="false" />
+    <Property Name="KlubIdKl" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Turnirs">
+    <Key>
+      <PropertyRef Name="IdTur" />
+    </Key>
+    <Property Name="IdTur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImeTur" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ima_ugovorFabrikaReketaIdFab" Type="int" Nullable="false" />
+    <Property Name="ima_ugovorKlubIdKl" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Igraci_Profesionalac">
+    <Key>
+      <PropertyRef Name="IdIgr" />
+    </Key>
+    <Property Name="Rang" Type="int" Nullable="false" />
+    <Property Name="KlubIdKl" Type="int" Nullable="false" />
+    <Property Name="IdIgr" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Igraci_Rekreativac">
+    <Key>
+      <PropertyRef Name="IdIgr" />
+    </Key>
+    <Property Name="BrojSparingaNedeljno" Type="int" Nullable="false" />
+    <Property Name="IdIgr" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FabrikaReketaReket">
+    <End Role="FabrikaReketa" Type="TKSistemModel.Store.FabrikaReketas" Multiplicity="1" />
+    <End Role="Reket" Type="TKSistemModel.Store.Rekets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FabrikaReketa">
+        <PropertyRef Name="IdFab" />
+      </Principal>
+      <Dependent Role="Reket">
+        <PropertyRef Name="FabrikaReketaIdFab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ZicaReket">
+    <End Role="Zica" Type="TKSistemModel.Store.Zice" Multiplicity="*" />
+    <End Role="Reket" Type="TKSistemModel.Store.Rekets" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Reket">
+        <PropertyRef Name="SifRek" />
+      </Principal>
+      <Dependent Role="Zica">
+        <PropertyRef Name="ReketSifRek" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ZicaIgrac">
+    <End Role="Zica" Type="TKSistemModel.Store.Zice" Multiplicity="*" />
+    <End Role="Igrac" Type="TKSistemModel.Store.Igraci" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Igrac">
+        <PropertyRef Name="IdIgr" />
+      </Principal>
+      <Dependent Role="Zica">
+        <PropertyRef Name="IgracIdIgr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfesionalacKlub">
+    <End Role="Profesionalac" Type="TKSistemModel.Store.Igraci_Profesionalac" Multiplicity="*" />
+    <End Role="Klub" Type="TKSistemModel.Store.Klubovi" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Klub">
+        <PropertyRef Name="IdKl" />
+      </Principal>
+      <Dependent Role="Profesionalac">
+        <PropertyRef Name="KlubIdKl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrenerKlub">
+    <End Role="Trener" Type="TKSistemModel.Store.Treners" Multiplicity="*" />
+    <End Role="Klub" Type="TKSistemModel.Store.Klubovi" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Klub">
+        <PropertyRef Name="IdKl" />
+      </Principal>
+      <Dependent Role="Trener">
+        <PropertyRef Name="KlubIdKl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FabrikaReketaima_ugovor">
+    <End Role="FabrikaReketa" Type="TKSistemModel.Store.FabrikaReketas" Multiplicity="1" />
+    <End Role="ima_ugovor" Type="TKSistemModel.Store.ima_ugovors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FabrikaReketa">
+        <PropertyRef Name="IdFab" />
+      </Principal>
+      <Dependent Role="ima_ugovor">
+        <PropertyRef Name="FabrikaReketaIdFab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ima_ugovorKlub">
+    <End Role="ima_ugovor" Type="TKSistemModel.Store.ima_ugovors" Multiplicity="*" />
+    <End Role="Klub" Type="TKSistemModel.Store.Klubovi" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Klub">
+        <PropertyRef Name="IdKl" />
+      </Principal>
+      <Dependent Role="ima_ugovor">
+        <PropertyRef Name="KlubIdKl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ima_ugovorTurnir">
+    <End Role="ima_ugovor" Type="TKSistemModel.Store.ima_ugovors" Multiplicity="1" />
+    <End Role="Turnir" Type="TKSistemModel.Store.Turnirs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ima_ugovor">
+        <PropertyRef Name="FabrikaReketaIdFab" />
+        <PropertyRef Name="KlubIdKl" />
+      </Principal>
+      <Dependent Role="Turnir">
+        <PropertyRef Name="ima_ugovorFabrikaReketaIdFab" />
+        <PropertyRef Name="ima_ugovorKlubIdKl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Profesionalac_inherits_Igrac">
+    <End Role="Igrac" Type="TKSistemModel.Store.Igraci" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Profesionalac" Type="TKSistemModel.Store.Igraci_Profesionalac" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Igrac">
+        <PropertyRef Name="IdIgr" />
+      </Principal>
+      <Dependent Role="Profesionalac">
+        <PropertyRef Name="IdIgr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rekreativac_inherits_Igrac">
+    <End Role="Igrac" Type="TKSistemModel.Store.Igraci" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Rekreativac" Type="TKSistemModel.Store.Igraci_Rekreativac" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Igrac">
+        <PropertyRef Name="IdIgr" />
+      </Principal>
+      <Dependent Role="Rekreativac">
+        <PropertyRef Name="IdIgr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="TKSistemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="TKSistemModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FabrikaReketas" EntityType="TKSistemModel.FabrikaReketa" />
+          <EntitySet Name="Rekets" EntityType="TKSistemModel.Reket" />
+          <AssociationSet Name="FabrikaReketaReket" Association="TKSistemModel.FabrikaReketaReket">
+            <End Role="FabrikaReketa" EntitySet="FabrikaReketas" />
+            <End Role="Reket" EntitySet="Rekets" />
+          </AssociationSet>
+          <EntitySet Name="Zice" EntityType="TKSistemModel.Zica" />
+          <EntitySet Name="Igraci" EntityType="TKSistemModel.Igrac" />
+          <AssociationSet Name="ZicaReket" Association="TKSistemModel.ZicaReket">
+            <End Role="Zica" EntitySet="Zice" />
+            <End Role="Reket" EntitySet="Rekets" />
+          </AssociationSet>
+          <AssociationSet Name="ZicaIgrac" Association="TKSistemModel.ZicaIgrac">
+            <End Role="Zica" EntitySet="Zice" />
+            <End Role="Igrac" EntitySet="Igraci" />
+          </AssociationSet>
+          <EntitySet Name="Klubovi" EntityType="TKSistemModel.Klub" />
+          <AssociationSet Name="ProfesionalacKlub" Association="TKSistemModel.ProfesionalacKlub">
+            <End Role="Profesionalac" EntitySet="Igraci" />
+            <End Role="Klub" EntitySet="Klubovi" />
+          </AssociationSet>
+          <EntitySet Name="Treners" EntityType="TKSistemModel.Trener" />
+          <AssociationSet Name="TrenerKlub" Association="TKSistemModel.TrenerKlub">
+            <End Role="Trener" EntitySet="Treners" />
+            <End Role="Klub" EntitySet="Klubovi" />
+          </AssociationSet>
+          <EntitySet Name="ima_ugovors" EntityType="TKSistemModel.ima_ugovor" />
+          <AssociationSet Name="FabrikaReketaima_ugovor" Association="TKSistemModel.FabrikaReketaima_ugovor">
+            <End Role="FabrikaReketa" EntitySet="FabrikaReketas" />
+            <End Role="ima_ugovor" EntitySet="ima_ugovors" />
+          </AssociationSet>
+          <AssociationSet Name="ima_ugovorKlub" Association="TKSistemModel.ima_ugovorKlub">
+            <End Role="ima_ugovor" EntitySet="ima_ugovors" />
+            <End Role="Klub" EntitySet="Klubovi" />
+          </AssociationSet>
+          <EntitySet Name="Turnirs" EntityType="TKSistemModel.Turnir" />
+          <AssociationSet Name="ima_ugovorTurnir" Association="TKSistemModel.ima_ugovorTurnir">
+            <End Role="ima_ugovor" EntitySet="ima_ugovors" />
+            <End Role="Turnir" EntitySet="Turnirs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FabrikaReketa">
+          <Key>
+            <PropertyRef Name="IdFab" />
+          </Key>
+          <Property Name="IdFab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdrFab" Type="String" Nullable="false" />
+          <Property Name="NazFab" Type="String" Nullable="false" />
+          <NavigationProperty Name="Rekets" Relationship="TKSistemModel.FabrikaReketaReket" FromRole="FabrikaReketa" ToRole="Reket" />
+          <NavigationProperty Name="ima_ugovor" Relationship="TKSistemModel.FabrikaReketaima_ugovor" FromRole="FabrikaReketa" ToRole="ima_ugovor" />
+        </EntityType>
+        <EntityType Name="Reket">
+          <Key>
+            <PropertyRef Name="SifRek" />
+          </Key>
+          <Property Name="SifRek" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarRek" Type="String" Nullable="false" />
+          <Property Name="BojaRek" Type="String" Nullable="false" />
+          <Property Name="ModRek" Type="String" Nullable="false" />
+          <NavigationProperty Name="FabrikaReketa" Relationship="TKSistemModel.FabrikaReketaReket" FromRole="Reket" ToRole="FabrikaReketa" />
+          <Property Name="FabrikaReketaIdFab" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Zicas" Relationship="TKSistemModel.ZicaReket" FromRole="Reket" ToRole="Zica" />
+        </EntityType>
+        <Association Name="FabrikaReketaReket">
+          <End Type="TKSistemModel.FabrikaReketa" Role="FabrikaReketa" Multiplicity="1" />
+          <End Type="TKSistemModel.Reket" Role="Reket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FabrikaReketa">
+              <PropertyRef Name="IdFab" />
+            </Principal>
+            <Dependent Role="Reket">
+              <PropertyRef Name="FabrikaReketaIdFab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Zica">
+          <Key>
+            <PropertyRef Name="SifZic" />
+          </Key>
+          <Property Name="SifZic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BojaZic" Type="String" Nullable="false" />
+          <Property Name="MatZic" Type="String" Nullable="false" />
+          <NavigationProperty Name="Reket" Relationship="TKSistemModel.ZicaReket" FromRole="Zica" ToRole="Reket" />
+          <Property Name="ReketSifRek" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Igrac" Relationship="TKSistemModel.ZicaIgrac" FromRole="Zica" ToRole="Igrac" />
+          <Property Name="IgracIdIgr" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Igrac">
+          <Key>
+            <PropertyRef Name="IdIgr" />
+          </Key>
+          <Property Name="IdIgr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImeIgr" Type="String" Nullable="false" />
+          <Property Name="PrzIgr" Type="String" Nullable="false" />
+          <Property Name="TipIgr" Type="String" Nullable="false" />
+          <NavigationProperty Name="Zicas" Relationship="TKSistemModel.ZicaIgrac" FromRole="Igrac" ToRole="Zica" />
+        </EntityType>
+        <EntityType Name="Rekreativac" BaseType="TKSistemModel.Igrac" >
+          <Property Name="BrojSparingaNedeljno" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profesionalac" BaseType="TKSistemModel.Igrac" >
+          <Property Name="Rang" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klub" Relationship="TKSistemModel.ProfesionalacKlub" FromRole="Profesionalac" ToRole="Klub" />
+          <Property Name="KlubIdKl" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ZicaReket">
+          <End Type="TKSistemModel.Zica" Role="Zica" Multiplicity="*" />
+          <End Type="TKSistemModel.Reket" Role="Reket" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Reket">
+              <PropertyRef Name="SifRek" />
+            </Principal>
+            <Dependent Role="Zica">
+              <PropertyRef Name="ReketSifRek" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZicaIgrac">
+          <End Type="TKSistemModel.Zica" Role="Zica" Multiplicity="*" />
+          <End Type="TKSistemModel.Igrac" Role="Igrac" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Igrac">
+              <PropertyRef Name="IdIgr" />
+            </Principal>
+            <Dependent Role="Zica">
+              <PropertyRef Name="IgracIdIgr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Klub">
+          <Key>
+            <PropertyRef Name="IdKl" />
+          </Key>
+          <Property Name="IdKl" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Profesionalacs" Relationship="TKSistemModel.ProfesionalacKlub" FromRole="Klub" ToRole="Profesionalac" />
+          <Property Name="NazKl" Type="String" Nullable="false" />
+          <Property Name="AdrKl" Type="String" Nullable="false" />
+          <NavigationProperty Name="Treners" Relationship="TKSistemModel.TrenerKlub" FromRole="Klub" ToRole="Trener" />
+          <NavigationProperty Name="ima_ugovor" Relationship="TKSistemModel.ima_ugovorKlub" FromRole="Klub" ToRole="ima_ugovor" />
+        </EntityType>
+        <Association Name="ProfesionalacKlub">
+          <End Type="TKSistemModel.Profesionalac" Role="Profesionalac" Multiplicity="*" />
+          <End Type="TKSistemModel.Klub" Role="Klub" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Klub">
+              <PropertyRef Name="IdKl" />
+            </Principal>
+            <Dependent Role="Profesionalac">
+              <PropertyRef Name="KlubIdKl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Trener">
+          <Key>
+            <PropertyRef Name="IdTr" />
+          </Key>
+          <Property Name="IdTr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Klub" Relationship="TKSistemModel.TrenerKlub" FromRole="Trener" ToRole="Klub" />
+          <Property Name="KlubIdKl" Type="Int32" Nullable="true" />
+          <Property Name="ImeTr" Type="String" Nullable="false" />
+          <Property Name="PrzTr" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="TrenerKlub">
+          <End Type="TKSistemModel.Trener" Role="Trener" Multiplicity="*" />
+          <End Type="TKSistemModel.Klub" Role="Klub" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Klub">
+              <PropertyRef Name="IdKl" />
+            </Principal>
+            <Dependent Role="Trener">
+              <PropertyRef Name="KlubIdKl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ima_ugovor" >
+          <Key>
+            <PropertyRef Name="FabrikaReketaIdFab" />
+            <PropertyRef Name="KlubIdKl" />
+          </Key>
+          <NavigationProperty Name="FabrikaReketa" Relationship="TKSistemModel.FabrikaReketaima_ugovor" FromRole="ima_ugovor" ToRole="FabrikaReketa" />
+          <Property Name="FabrikaReketaIdFab" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klub" Relationship="TKSistemModel.ima_ugovorKlub" FromRole="ima_ugovor" ToRole="Klub" />
+          <Property Name="KlubIdKl" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Turnirs" Relationship="TKSistemModel.ima_ugovorTurnir" FromRole="ima_ugovor" ToRole="Turnir" />
+        </EntityType>
+        <Association Name="FabrikaReketaima_ugovor">
+          <End Type="TKSistemModel.FabrikaReketa" Role="FabrikaReketa" Multiplicity="1" />
+          <End Type="TKSistemModel.ima_ugovor" Role="ima_ugovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FabrikaReketa">
+              <PropertyRef Name="IdFab" />
+            </Principal>
+            <Dependent Role="ima_ugovor">
+              <PropertyRef Name="FabrikaReketaIdFab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ima_ugovorKlub">
+          <End Type="TKSistemModel.ima_ugovor" Role="ima_ugovor" Multiplicity="*" />
+          <End Type="TKSistemModel.Klub" Role="Klub" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Klub">
+              <PropertyRef Name="IdKl" />
+            </Principal>
+            <Dependent Role="ima_ugovor">
+              <PropertyRef Name="KlubIdKl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Turnir">
+          <Key>
+            <PropertyRef Name="IdTur" />
+          </Key>
+          <Property Name="IdTur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImeTur" Type="String" Nullable="false" />
+          <NavigationProperty Name="ima_ugovor" Relationship="TKSistemModel.ima_ugovorTurnir" FromRole="Turnir" ToRole="ima_ugovor" />
+          <Property Name="ima_ugovorFabrikaReketaIdFab" Type="Int32" Nullable="false" />
+          <Property Name="ima_ugovorKlubIdKl" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ima_ugovorTurnir">
+          <End Type="TKSistemModel.ima_ugovor" Role="ima_ugovor" Multiplicity="1" />
+          <End Type="TKSistemModel.Turnir" Role="Turnir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ima_ugovor">
+              <PropertyRef Name="FabrikaReketaIdFab" />
+              <PropertyRef Name="KlubIdKl" />
+            </Principal>
+            <Dependent Role="Turnir">
+              <PropertyRef Name="ima_ugovorFabrikaReketaIdFab" />
+              <PropertyRef Name="ima_ugovorKlubIdKl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TKSistemModelStoreContainer" CdmEntityContainer="TKSistemModelContainer">
+    <EntitySetMapping Name="FabrikaReketas">
+      <EntityTypeMapping TypeName="IsTypeOf(TKSistemModel.FabrikaReketa)">
+        <MappingFragment StoreEntitySet="FabrikaReketas">
+          <ScalarProperty Name="IdFab" ColumnName="IdFab" />
+          <ScalarProperty Name="AdrFab" ColumnName="AdrFab" />
+          <ScalarProperty Name="NazFab" ColumnName="NazFab" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rekets">
+      <EntityTypeMapping TypeName="IsTypeOf(TKSistemModel.Reket)">
+        <MappingFragment StoreEntitySet="Rekets">
+          <ScalarProperty Name="SifRek" ColumnName="SifRek" />
+          <ScalarProperty Name="MarRek" ColumnName="MarRek" />
+          <ScalarProperty Name="BojaRek" ColumnName="BojaRek" />
+          <ScalarProperty Name="ModRek" ColumnName="ModRek" />
+          <ScalarProperty Name="FabrikaReketaIdFab" ColumnName="FabrikaReketaIdFab" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zice">
+      <EntityTypeMapping TypeName="IsTypeOf(TKSistemModel.Zica)">
+        <MappingFragment StoreEntitySet="Zice">
+          <ScalarProperty Name="SifZic" ColumnName="SifZic" />
+          <ScalarProperty Name="BojaZic" ColumnName="BojaZic" />
+          <ScalarProperty Name="MatZic" ColumnName="MatZic" />
+          <ScalarProperty Name="ReketSifRek" ColumnName="ReketSifRek" />
+          <ScalarProperty Name="IgracIdIgr" ColumnName="IgracIdIgr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Igraci">
+      <EntityTypeMapping TypeName="IsTypeOf(TKSistemModel.Igrac)">
+        <MappingFragment StoreEntitySet="Igraci">
+          <ScalarProperty Name="IdIgr" ColumnName="IdIgr" />
+          <ScalarProperty Name="ImeIgr" ColumnName="ImeIgr" />
+          <ScalarProperty Name="PrzIgr" ColumnName="PrzIgr" />
+          <ScalarProperty Name="TipIgr" ColumnName="TipIgr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(TKSistemModel.Profesionalac)">
+        <MappingFragment StoreEntitySet="Igraci_Profesionalac">
+          <ScalarProperty Name="IdIgr" ColumnName="IdIgr" />
+          <ScalarProperty Name="Rang" ColumnName="Rang" />
+          <ScalarProperty Name="KlubIdKl" ColumnName="KlubIdKl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(TKSistemModel.Rekreativac)">
+        <MappingFragment StoreEntitySet="Igraci_Rekreativac">
+          <ScalarProperty Name="IdIgr" ColumnName="IdIgr" />
+          <ScalarProperty Name="BrojSparingaNedeljno" ColumnName="BrojSparingaNedeljno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Klubovi">
+      <EntityTypeMapping TypeName="IsTypeOf(TKSistemModel.Klub)">
+        <MappingFragment StoreEntitySet="Klubovi">
+          <ScalarProperty Name="IdKl" ColumnName="IdKl" />
+          <ScalarProperty Name="NazKl" ColumnName="NazKl" />
+          <ScalarProperty Name="AdrKl" ColumnName="AdrKl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Treners">
+      <EntityTypeMapping TypeName="IsTypeOf(TKSistemModel.Trener)">
+        <MappingFragment StoreEntitySet="Treners">
+          <ScalarProperty Name="IdTr" ColumnName="IdTr" />
+          <ScalarProperty Name="KlubIdKl" ColumnName="KlubIdKl" />
+          <ScalarProperty Name="ImeTr" ColumnName="ImeTr" />
+          <ScalarProperty Name="PrzTr" ColumnName="PrzTr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ima_ugovors">
+      <EntityTypeMapping TypeName="IsTypeOf(TKSistemModel.ima_ugovor)">
+        <MappingFragment StoreEntitySet="ima_ugovors">
+          <ScalarProperty Name="FabrikaReketaIdFab" ColumnName="FabrikaReketaIdFab" />
+          <ScalarProperty Name="KlubIdKl" ColumnName="KlubIdKl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Turnirs">
+      <EntityTypeMapping TypeName="IsTypeOf(TKSistemModel.Turnir)">
+        <MappingFragment StoreEntitySet="Turnirs">
+          <ScalarProperty Name="IdTur" ColumnName="IdTur" />
+          <ScalarProperty Name="ImeTur" ColumnName="ImeTur" />
+          <ScalarProperty Name="ima_ugovorFabrikaReketaIdFab" ColumnName="ima_ugovorFabrikaReketaIdFab" />
+          <ScalarProperty Name="ima_ugovorKlubIdKl" ColumnName="ima_ugovorKlubIdKl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

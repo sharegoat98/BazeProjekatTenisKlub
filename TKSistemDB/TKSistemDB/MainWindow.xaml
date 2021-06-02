@@ -1,0 +1,133 @@
+﻿<Window x:Class="TKSistemDB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TKSistemDB"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="600">
+
+    <Window.Resources>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Label Content="Dobrodosli u SVET TENISA" FontSize="23" HorizontalAlignment="Left" Margin="149,10,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="127" Margin="141,56,0,0" VerticalAlignment="Top" Width="319">
+            <Image.Source>
+                <BitmapImage DecodePixelWidth="300" UriSource="slike/atp-tour-logo.png" />
+            </Image.Source>
+        </Image>
+        <Label Content="Odaberite entitet kojim zelite da manipulisete:" FontSize="18" HorizontalAlignment="Left" Margin="109,202,0,0" VerticalAlignment="Top"/>
+
+
+
+
+
+        <Image HorizontalAlignment="Left" Height="100" Margin="22,279,0,0" VerticalAlignment="Top" Width="100">
+            <Image.Source>
+                <BitmapImage UriSource="slike/tball2Fabrika.png" />
+            </Image.Source>
+        </Image>
+        <Button x:Name="DodajFabriku" Cursor="Hand" Style="{StaticResource MyButtonStyle}" Click="DodajFabriku_Click" HorizontalAlignment="Left" Margin="33,307,0,0" VerticalAlignment="Top" Width="89" Height="44"/>
+
+        <Image HorizontalAlignment="Left" Height="100" Margin="173,279,0,0" VerticalAlignment="Top" Width="100">
+            <Image.Source>
+                <BitmapImage UriSource="slike/tball2Reket.png" />
+            </Image.Source>
+        </Image>
+        <Button x:Name="ReketButton"  Cursor="Hand" Style="{StaticResource MyButtonStyle}" Click="ReketButton_Click" HorizontalAlignment="Left" Margin="183,326,0,0" VerticalAlignment="Top" Width="80" Height="43" RenderTransformOrigin="0.52,-0.04">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="27"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
+        <Image HorizontalAlignment="Left" Height="100" Margin="315,279,0,0" VerticalAlignment="Top" Width="100">
+            <Image.Source>
+                <BitmapImage UriSource="slike/tball2Zica.png"/>
+            </Image.Source>
+        </Image>
+        <Button x:Name="ZicaButton" Click="ZicaButton_Click" Cursor="Hand" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="329,298,0,0" VerticalAlignment="Top" Width="75" Height="63"/>
+
+
+        <Image HorizontalAlignment="Left" Height="100" Margin="467,279,0,0" VerticalAlignment="Top" Width="100">
+            <Image.Source>
+                <BitmapImage UriSource="slike/tball2Igrac.png"/>
+            </Image.Source>
+        </Image>
+        <Button x:Name="IgracButton" Click="IgracButton_Click" Cursor="Hand" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="481,298,0,0" VerticalAlignment="Top" Width="75" Height="63"/>
+
+
+        <Image HorizontalAlignment="Left" Height="100" Margin="20,394,0,0" VerticalAlignment="Top" Width="100">
+            <Image.Source>
+                <BitmapImage UriSource="slike/tball2Klub.png"/>
+            </Image.Source>
+        </Image>
+        <Button x:Name="KlubButton" Click="KlubButton_Click" Cursor="Hand" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="33,413,0,0" VerticalAlignment="Top" Width="75" Height="64"/>
+
+
+        <Image HorizontalAlignment="Left" Height="100" Margin="173,394,0,0" VerticalAlignment="Top" Width="100">
+            <Image.Source>
+                <BitmapImage UriSource="slike/tball2Trener.png"/>
+            </Image.Source>
+        </Image>
+        <Button x:Name="TrenerButton" Click="TrenerButton_Click" Cursor="Hand" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="187,413,0,0" VerticalAlignment="Top" Width="75" Height="64" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.868"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.485"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
+        <Image HorizontalAlignment="Left" Height="100" Margin="313,394,0,0" VerticalAlignment="Top" Width="100">
+            <Image.Source>
+                <BitmapImage UriSource="slike/tball2Turnir.png"/>
+            </Image.Source>
+        </Image>
+        <Button x:Name="TurnirButton" Click="TurnirButton_Click" Cursor="Hand" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="329,413,0,0" VerticalAlignment="Top" Width="75" Height="64"/>
+
+
+        <Image HorizontalAlignment="Left" Height="100" Margin="467,394,0,0" VerticalAlignment="Top" Width="100">
+
+            <Image.Source>
+                <BitmapImage UriSource="slike/tball2UgovorPravi.png"/>
+            </Image.Source>
+
+        </Image>
+        <Button x:Name="UgovorButton" Cursor="Hand" Click="UgovorButton_Click" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="481,413,0,0" VerticalAlignment="Top" Width="75" Height="64"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </Grid>
+</Window>

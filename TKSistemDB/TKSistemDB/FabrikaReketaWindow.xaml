@@ -1,0 +1,62 @@
+﻿<Window x:Class="TKSistemDB.FabrikaReketaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TKSistemDB"
+        mc:Ignorable="d"
+        Title="FabrikaReketaWindow" Height="600" Width="600">
+    <Grid>
+        <Label Content="CRUD - FABRIKA REKETA" HorizontalAlignment="Left" FontSize="23" Margin="168,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="DataGridFabrikeReketa" HorizontalAlignment="Left" Background="LightGreen" SelectionMode="Single"  IsReadOnly="True" AutoGenerateColumns="False" Height="190" Margin="22,83,0,0" VerticalAlignment="Top" Width="546">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn x:Name="idFab" Header="ID fabrike" Binding="{Binding IdFab}"  Width="100" />
+                <DataGridTextColumn x:Name="nazFab" Header="Naziv fabrike" Binding="{Binding NazFab}"  Width="100" />
+                <DataGridTextColumn x:Name="adrFab"  Header="Adresa fabrike" Binding="{Binding AdrFab}" Width="100"/>
+
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button x:Name="UpdateButton" Width="130" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Click="UpdateButton_Click">Update</Button>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button x:Name="DeleteButton" Width="130" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Click="DeleteButton_Click">Delete</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+
+        </DataGrid>
+        <Label Content="Dodaj novu fabriku reketa:" FontSize="18" HorizontalAlignment="Left" Margin="193,304,0,0" VerticalAlignment="Top"/>
+        <Label Content="Naziv fabrike:" FontSize="15" HorizontalAlignment="Left" Margin="82,369,0,0" VerticalAlignment="Top" Width="103"/>
+        <Label Content="Adresa fabrike:" FontSize="15" HorizontalAlignment="Left" Margin="374,369,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="nazFabTB" HorizontalAlignment="Left" Height="23" Margin="65,404,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140"/>
+        <TextBox x:Name="adrFabTB" HorizontalAlignment="Left" Height="23" Margin="362,404,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140"/>
+        <Button x:Name="dodajFabrikuReketaButton" Click="dodajFabrikuReketaButton_Click" Content="Dodaj" HorizontalAlignment="Left" Margin="222,494,0,0" VerticalAlignment="Top" Width="133" Height="32"/>
+        
+        
+        <Label x:Name="errNaziv" Content="Morate uneti naziv!" FontSize="10" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="61,421,0,0" VerticalAlignment="Top" Width="140"/>
+        <Label x:Name="errAdresa" Content="Morate uneti adresu!" FontSize="10" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="358,421,0,0" VerticalAlignment="Top" Width="140"/>
+        <Label x:Name="errNazivPostoji" Content="Fabrika sa unetim nazivom vec postoji!" FontSize="10" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="46,427,0,0" VerticalAlignment="Top"/>
+
+
+    </Grid>
+</Window>

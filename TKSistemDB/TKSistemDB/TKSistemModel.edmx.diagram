@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4bbc9831ff114ca8bcac570d79ae83f1" Name="Diagram1" ZoomLevel="95" >
+        <EntityTypeShape EntityType="TKSistemModel.FabrikaReketa" Width="1.5" PointX="2.625" PointY="2.25" />
+        <EntityTypeShape EntityType="TKSistemModel.Reket" Width="1.625" PointX="2.625" PointY="5.375" />
+        <AssociationConnector Association="TKSistemModel.FabrikaReketaReket" />
+        <EntityTypeShape EntityType="TKSistemModel.Zica" Width="1.5" PointX="2.625" PointY="9.375" />
+        <EntityTypeShape EntityType="TKSistemModel.Igrac" Width="1.5" PointX="7" PointY="9.5" />
+        <EntityTypeShape EntityType="TKSistemModel.Rekreativac" Width="1.5" PointX="5.875" PointY="12.375" />
+        <InheritanceConnector EntityType="TKSistemModel.Rekreativac" />
+        <EntityTypeShape EntityType="TKSistemModel.Profesionalac" Width="1.5" PointX="8.25" PointY="12.375" />
+        <InheritanceConnector EntityType="TKSistemModel.Profesionalac" />
+        <AssociationConnector Association="TKSistemModel.ZicaReket" />
+        <AssociationConnector Association="TKSistemModel.ZicaIgrac" />
+        <EntityTypeShape EntityType="TKSistemModel.Klub" Width="1.5" PointX="2.75" PointY="18.75" />
+        <AssociationConnector Association="TKSistemModel.ProfesionalacKlub" />
+        <EntityTypeShape EntityType="TKSistemModel.Trener" Width="1.5" PointX="2.75" PointY="14.875" />
+        <AssociationConnector Association="TKSistemModel.TrenerKlub" />
+        <EntityTypeShape EntityType="TKSistemModel.ima_ugovor" Width="1.5" PointX="0.5" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="TKSistemModel.FabrikaReketaima_ugovor" />
+        <AssociationConnector Association="TKSistemModel.ima_ugovorKlub" />
+        <EntityTypeShape EntityType="TKSistemModel.Turnir" Width="1.5" PointX="3.25" PointY="12.5" />
+        <AssociationConnector Association="TKSistemModel.ima_ugovorTurnir" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
