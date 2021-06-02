@@ -15,17 +15,7 @@
                 <DataGridTextColumn x:Name="idFab" Header="ID fabrike reketa" Binding="{Binding FabrikaReketaIdFab}"  Width="100" />
                 <DataGridTextColumn x:Name="idKl" Header="ID kluba" Binding="{Binding KlubIdKl}"  Width="100" />
 
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate >
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button x:Name="UpdateButton" Width="130" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Click="UpdateButton_Click">Update</Button>
-
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-
-                </DataGridTemplateColumn>
+                
 
 
 

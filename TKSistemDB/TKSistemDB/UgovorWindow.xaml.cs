@@ -84,7 +84,23 @@ namespace TKSistemDB
 
             using (var db = new TKSistemModelContainer())
             {
-                db.Database.ExecuteSqlCommand("DELETE FROM ima_ugovors where FabrikaReketaIdFab=" + deleteUgovor.FabrikaReketaIdFab+" and KlubIdKl="+deleteUgovor.KlubIdKl);
+                //nadji da obrises i turnir sa ovim ugovorom
+
+                var turnir = from tr in db.Turnirs
+                             where tr.ima_ugovorFabrikaReketaIdFab == deleteUgovor.FabrikaReketaIdFab && tr.ima_ugovorKlubIdKl == deleteUgovor.KlubIdKl
+                             select tr;
+
+                int idTur = -1;
+                foreach (var tur in turnir)
+                {
+                    idTur = tur.IdTur;
+                }
+
+                db.Database.ExecuteSqlCommand("DELETE FROM Turnirs where IdTur=" + idTur);
+
+
+
+                db.Database.ExecuteSqlCommand("DELETE FROM ima_ugovors where FabrikaReketaIdFab=" + deleteUgovor.FabrikaReketaIdFab + " and KlubIdKl=" + deleteUgovor.KlubIdKl);
 
                 //resetuj listu za prikaz
                 Ugovori.Clear();
@@ -103,52 +119,7 @@ namespace TKSistemDB
 
         }
 
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-            ima_ugovor editUgovor = new ima_ugovor();
-            editUgovor = DataGridUgovori.SelectedItem as ima_ugovor;
-
-            using (var db = new TKSistemModelContainer())
-            {
-                //pronadji klub
-                var trazeniKlub = from kl in db.Klubovi
-                                  where kl.IdKl == editUgovor.KlubIdKl
-                                  select kl;
-
-
-                foreach (var klub in trazeniKlub)
-                {
-                    cmbKlubovi.Text = klub.NazKl;
-                    idKlubaMenjam = klub.IdKl;
-                    
-                }
-
-
-                //pronadji fabriku
-                var trazenaFabrika = from f in db.FabrikaReketas
-                                     where f.IdFab == editUgovor.FabrikaReketaIdFab
-                                     select f;
-
-                foreach (var fab in trazenaFabrika)
-                {
-                    cmbFabrike.Text = fab.NazFab;
-                    idFabrikeMenjam = fab.IdFab;
-                    
-                }
-
-            }
-
-
-            errKlub.Visibility = Visibility.Hidden;
-            errFabrika.Visibility = Visibility.Hidden;
-            errPostojiUgovor.Visibility = Visibility.Hidden;
-
-
-
-            btnDodajUgovor.Content = "Izmeni";
-
-
-        }
+        
 
         private void btnDodajUgovor_Click(object sender, RoutedEventArgs e)
         {
@@ -226,7 +197,7 @@ namespace TKSistemDB
                         {
                             
                                 ugg.Klub=klub;
-                            ugg.KlubIdKl = klub.IdKl;
+                            
                             
                         }
 
@@ -241,15 +212,50 @@ namespace TKSistemDB
                         {
                             
                                 ugg.FabrikaReketa = fabrika;
-                            ugg.FabrikaReketaIdFab = fabrika.IdFab;
+                            
                             
                         }
+
+
+                        //updateuj turnir sa ovim ugovorom
+                        var turnir = from tr in db.Turnirs
+                                     where tr.ima_ugovorFabrikaReketaIdFab == idFabrikeMenjam && tr.ima_ugovorKlubIdKl == idKlubaMenjam
+                                     select tr;
+
+                        //int idKl = -1;
+
+                        foreach (var tur in turnir)
+                        {
+                            tur.ima_ugovor = ugg;
+                        }
+
+                        db.SaveChanges();
+
+
+                        var istiUgovor = from ug in db.ima_ugovors
+                                         where ug.FabrikaReketaIdFab == ugg.FabrikaReketaIdFab && ug.KlubIdKl == ugg.KlubIdKl
+                                         select ug;
+
+
 
                         db.Database.ExecuteSqlCommand("DELETE FROM ima_ugovors where FabrikaReketaIdFab=" + idFabrikeMenjam + " and KlubIdKl=" + idKlubaMenjam);
 
 
-                        db.ima_ugovors.Add(ugg);
-                        db.SaveChanges();
+
+                        List<ima_ugovor> Ugovori = new List<ima_ugovor>();
+                        foreach (var u in istiUgovor)
+                        {
+                            Ugovori.Add(u);
+                        }
+                        
+
+                        if (Ugovori.Count == 0)
+                        {
+                            db.ima_ugovors.Add(ugg);
+                            db.SaveChanges();
+                        }
+                        
+                        
 
                         //resetuj listu za prikaz
                         Ugovori.Clear();
